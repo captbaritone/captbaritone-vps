@@ -1,5 +1,5 @@
 [Unit]
-Description=Winamp Skin Museum Discord Bot
+Description=Winamp Skin Museum: Discord Bot
 After=network.target
 
 [Service]

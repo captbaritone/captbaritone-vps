@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Backup of Nicolas' Site to S3 every day
+
+[Timer]
+OnCalendar=*-*-* 00:05
+Persistent=true
+
+[Install]
+WantedBy=timers.target

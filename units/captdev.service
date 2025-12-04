@@ -1,5 +1,5 @@
 [Unit]
-Description=Capt RS server
+Description=Capt RS: Server
 After=network.target
 
 [Service]

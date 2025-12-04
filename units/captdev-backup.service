@@ -1,5 +1,5 @@
 [Unit]
-Description=Backup the capt.dev database to S3 daily
+Description=capt.dev: Backup Database to S3
 After=network.target
 
 [Service]

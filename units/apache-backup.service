@@ -1,5 +1,5 @@
 [Unit]
-Description=Winamp Skin Museum: Backup Database to S3
+Description=Apache: Backup Configs
 After=network.target
 
 [Service]
@@ -13,7 +13,7 @@ Group=captbaritone
 WorkingDirectory=/home/captbaritone/
 
 # Trigger via Pnpm
-ExecStart=/home/captbaritone/backup/skins_db_backup.sh
+ExecStart=/home/captbaritone/backup/apache.sh
 
 # Environment
 Environment=HOME=/home/captbaritone

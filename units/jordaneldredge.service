@@ -1,5 +1,5 @@
 [Unit]
-Description=Next.js site - jordaneldredge.com
+Description=jordaneldredge.com: Next.js Site
 After=network.target
 
 [Service]

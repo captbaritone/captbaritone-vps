@@ -1,5 +1,5 @@
 [Unit]
-Description=Winamp Skin Museum Blue Sky Post Script
+Description=Winamp Skin Museum: Blue Sky Post Script
 After=network.target
 
 [Service]
