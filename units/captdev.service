@@ -1,0 +1,28 @@
+[Unit]
+Description=Capt RS server
+After=network.target
+
+[Service]
+Type=simple
+
+User=captbaritone
+Group=captbaritone
+
+# Project directory (for relative paths, logs, etc.)
+WorkingDirectory=/home/captbaritone/projects/capt-rs
+
+# Rust server binary
+ExecStart=/home/captbaritone/projects/capt-rs/deploy/server
+
+# Optional env vars (uncomment / edit as needed)
+# Environment=RUST_LOG=info
+# Environment=RUST_BACKTRACE=1
+
+Restart=on-failure
+RestartSec=2
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,24 @@
+[Unit]
+Description=Winamp Skin Museum Blue Sky Post Script
+After=network.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+# Project directory
+WorkingDirectory=/home/captbaritone/projects/webamp/packages/skin-database/
+
+# Trigger via Pnpm
+ExecStart=/home/captbaritone/.local/share/pnpm/pnpm run cli share --bluesky
+
+# Environment
+Environment=NODE_ENV=production
+Environment=HOME=/home/captbaritone
+Environment=PATH=/home/captbaritone/.nvm/versions/node/v22.21.1/bin:/home/captbaritone/.local/share/pnpm:/usr/bin:/bin
+
+StandardOutput=journal
+StandardError=journal

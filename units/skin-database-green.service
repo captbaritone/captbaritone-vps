@@ -1,0 +1,32 @@
+[Unit]
+Description=Winamp Skin Museum Green Deploy
+After=network.target
+
+[Service]
+Type=simple
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+# Project directory
+WorkingDirectory=/home/captbaritone/projects/webamp/packages/skin-database/
+
+# Start Next.js via pnpm
+ExecStart=/home/captbaritone/.local/share/pnpm/pnpm run start
+
+# Environment
+Environment=NODE_ENV=production
+Environment=PORT=3002
+Environment=HOME=/home/captbaritone
+Environment=PATH=/home/captbaritone/.nvm/versions/node/v22.21.1/bin:/home/captbaritone/.local/share/pnpm:/usr/bin:/bin
+
+# Restart on failure
+Restart=on-failure
+RestartSec=2
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
