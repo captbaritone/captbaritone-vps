@@ -1,0 +1,22 @@
+[Unit]
+Description=Winamp Skin Museum Backup Database to S3
+After=network.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+# Project directory
+WorkingDirectory=/home/captbaritone/
+
+# Trigger via Pnpm
+ExecStart=/home/captbaritone/backup/skins_db_backup.sh
+
+# Environment
+Environment=HOME=/home/captbaritone
+
+StandardOutput=journal
+StandardError=journal

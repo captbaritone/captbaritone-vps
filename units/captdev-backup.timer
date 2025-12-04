@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Backup of the capt.dev database to S3 every day
+
+[Timer]
+OnCalendar=*-*-* 20:05
+Persistent=true
+
+[Install]
+WantedBy=timers.target

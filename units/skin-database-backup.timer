@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Backup of the Winamp Skin Museum database to S3 every day
+
+[Timer]
+OnCalendar=*-*-* 10:05
+Persistent=true
+
+[Install]
+WantedBy=timers.target

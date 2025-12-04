@@ -1,0 +1,22 @@
+[Unit]
+Description=Backup the capt.dev database to S3 daily
+After=network.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+# Project directory
+WorkingDirectory=/home/captbaritone/
+
+# Trigger via Pnpm
+ExecStart=/home/captbaritone/backup/capt.sh
+
+# Environment
+Environment=HOME=/home/captbaritone
+
+StandardOutput=journal
+StandardError=journal
