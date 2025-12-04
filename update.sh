@@ -20,3 +20,17 @@ echo "All unit files copied."
 
 echo "Reloading systemd daemon..."
 sudo systemctl daemon-reload
+
+# Enable all .service units
+for unit in "$UNIT_DIR"/*.service; do
+    unit_name="$(basename "$unit")"
+    echo "Enabling $unit_name..."
+    sudo systemctl enable --now "$unit_name"
+done
+
+# Enable all .timer units
+for timer in "$UNIT_DIR"/*.timer; do
+    timer_name="$(basename "$timer")"
+    echo "Enabling $timer_name..."
+    sudo systemctl enable --now "$timer_name"
+done
