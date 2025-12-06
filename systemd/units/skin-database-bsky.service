@@ -3,7 +3,7 @@ Description=Winamp Skin Museum: Blue Sky Post Script
 After=network.target
 
 [Service]
-Type=oneshot
+Type=simple
 
 # Run as your user
 User=captbaritone
@@ -12,13 +12,13 @@ Group=captbaritone
 # Project directory
 WorkingDirectory=/home/captbaritone/projects/webamp/packages/skin-database/
 
-# Trigger via Pnpm
-ExecStart=/home/captbaritone/.local/share/pnpm/pnpm run cli share --bluesky
-
 # Environment
 Environment=NODE_ENV=production
 Environment=HOME=/home/captbaritone
-Environment=PATH=/home/captbaritone/.nvm/versions/node/v22.21.1/bin:/home/captbaritone/.local/share/pnpm:/usr/bin:/bin
+Environment="PATH=/home/captbaritone/.nvm/versions/node/v22.21.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Start Next.js via pnpm
+ExecStart=/usr/bin/env bash -lc 'exec pnpm run cli share --bluesky'
 
 StandardOutput=journal
 StandardError=journal
