@@ -13,7 +13,7 @@ Group=captbaritone
 WorkingDirectory=/home/captbaritone/
 
 # Trigger via Pnpm
-ExecStart=/home/captbaritone/backup/capt.sh
+ExecStart=/home/captbaritone/captbaritone-vps/backup/capt_db_backup.sh
 
 # Environment
 Environment=HOME=/home/captbaritone
