@@ -4,24 +4,18 @@ After=network.target
 
 [Service]
 Type=simple
-
-# Run as your user
 User=captbaritone
 Group=captbaritone
-
-# Project directory
 WorkingDirectory=/home/captbaritone/projects/jordaneldredge.com
 
-# Start Next.js via pnpm
-ExecStart=/home/captbaritone/.local/share/pnpm/pnpm run start
-
-# Environment
+Environment=HOME=/home/captbaritone
 Environment=NODE_ENV=production
 Environment=PORT=4000
-Environment=HOME=/home/captbaritone
-Environment=PATH=/home/captbaritone/.nvm/versions/node/v20.11.1/bin:/home/captbaritone/.local/share/pnpm:/usr/bin:/bin
+Environment="PATH=/home/captbaritone/.nvm/versions/node/v20.19.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-# Restart on failure
+# You can keep using the absolute pnpm path if you like, but with PATH set you don't need to:
+ExecStart=/usr/bin/env bash -lc 'exec pnpm run start'
+
 Restart=on-failure
 RestartSec=2
 

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # Copies all systemd unit files from units/ to /etc/systemd/system/
 
 set -e
