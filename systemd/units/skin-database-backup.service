@@ -13,7 +13,7 @@ Group=captbaritone
 WorkingDirectory=/home/captbaritone/
 
 # Trigger via Pnpm
-ExecStart=/home/captbaritone/backup/skins_db_backup.sh
+ExecStart=/home/captbaritone/captbaritone-vps/backup/skins_db_backup.sh
 
 # Environment
 Environment=HOME=/home/captbaritone
