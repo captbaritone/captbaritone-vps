@@ -12,7 +12,7 @@ Group=captbaritone
 WorkingDirectory=/home/captbaritone/projects/capt-rs
 
 # Rust server binary
-ExecStart=/home/captbaritone/projects/capt-rs/deploy/server
+ExecStart=/home/captbaritone/projects/capt-rs/target/release/server
 
 # Optional env vars (uncomment / edit as needed)
 # Environment=RUST_LOG=info

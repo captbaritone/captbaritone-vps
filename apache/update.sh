@@ -1,18 +1,18 @@
 #!/bin/bash
-# Copies all apache sites from sites-avaliable/ to /etc/apache2/sites-available/
+# Copies all apache sites from sites-avaliable/ to /etc/apache2/sites-avaliable/
 
 set -e
 
 # Refresh sudo session to avoid multiple password prompts
 sudo -v
 
-UNIT_DIR="$(dirname "$0")/sites-available"
+SITES_DIR="$(dirname "$0")/sites-avaliable"
 TARGET_DIR="/etc/apache2/sites-available/"
 
-for unit in "$UNIT_DIR"/*; do
-    if [[ -f "$unit" ]]; then
-        echo "Copying $unit to $TARGET_DIR"
-        sudo cp "$unit" "$TARGET_DIR"
+for site_file in "$SITES_DIR"/*; do
+    if [[ -f "$site_file" ]]; then
+        echo "Copying $site_file to $TARGET_DIR"
+        sudo cp "$site_file" "$TARGET_DIR"
     fi
 done
 

@@ -12,13 +12,13 @@ Group=captbaritone
 # Project directory
 WorkingDirectory=/home/captbaritone/projects/webamp/packages/skin-database/
 
-# Start Next.js via pnpm
-ExecStart=/home/captbaritone/.local/share/pnpm/pnpm run bot
-
 # Environment
 Environment=NODE_ENV=production
 Environment=HOME=/home/captbaritone
-Environment=PATH=/home/captbaritone/.nvm/versions/node/v22.21.1/bin:/home/captbaritone/.local/share/pnpm:/usr/bin:/bin
+Environment="PATH=/home/captbaritone/.nvm/versions/node/v22.21.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Start Next.js via pnpm
+ExecStart=/usr/bin/env bash -lc 'exec pnpm run bot'
 
 # Restart on failure
 Restart=on-failure
