@@ -1,0 +1,17 @@
+[Unit]
+Description=FachMe Opera Role Finder
+After=network.target redis-server.service
+Requires=redis-server.service
+
+[Service]
+Type=simple
+User=captbaritone
+WorkingDirectory=/home/captbaritone/projects/fachme
+Environment="FACHME_CONFIG=/home/captbaritone/projects/fachme/config.py"
+Environment="FLASK_APP=fachme"
+ExecStart=/home/captbaritone/projects/fachme/venv/bin/python3 -m flask run --host=0.0.0.0 --port=5000
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
