@@ -1,0 +1,16 @@
+[Unit]
+Description=urlme.me meme generator
+After=network.target
+
+[Service]
+Type=simple
+User=captbaritone
+WorkingDirectory=/home/captbaritone/projects/urlme.me
+EnvironmentFile=/home/captbaritone/projects/urlme.me/.env
+Environment="FLASK_APP=url"
+ExecStart=/home/captbaritone/projects/urlme.me/venv/bin/python3 -m flask run --host=127.0.0.1 --port=5003
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
