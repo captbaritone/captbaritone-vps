@@ -1,0 +1,81 @@
+{
+  "Rules": [
+    {
+      "ID": "skins-daily-expire-7d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "skins_database/daily/" },
+      "Expiration": { "Days": 7 }
+    },
+    {
+      "ID": "skins-weekly-expire-30d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "skins_database/weekly/" },
+      "Expiration": { "Days": 30 }
+    },
+    {
+      "ID": "skins-monthly-archive-expire-366d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "skins_database/monthly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }],
+      "Expiration": { "Days": 366 }
+    },
+    {
+      "ID": "skins-yearly-archive-forever",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "skins_database/yearly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }]
+    },
+
+    {
+      "ID": "jordaneldredge-daily-expire-7d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "jordaneldredge.com/daily/" },
+      "Expiration": { "Days": 7 }
+    },
+    {
+      "ID": "jordaneldredge-weekly-expire-30d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "jordaneldredge.com/weekly/" },
+      "Expiration": { "Days": 30 }
+    },
+    {
+      "ID": "jordaneldredge-monthly-archive-expire-366d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "jordaneldredge.com/monthly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }],
+      "Expiration": { "Days": 366 }
+    },
+    {
+      "ID": "jordaneldredge-yearly-archive-forever",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "jordaneldredge.com/yearly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }]
+    },
+
+    {
+      "ID": "capt-daily-expire-7d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "capt.dev/daily/" },
+      "Expiration": { "Days": 7 }
+    },
+    {
+      "ID": "capt-weekly-expire-30d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "capt.dev/weekly/" },
+      "Expiration": { "Days": 30 }
+    },
+    {
+      "ID": "capt-monthly-archive-expire-366d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "capt.dev/monthly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }],
+      "Expiration": { "Days": 366 }
+    },
+    {
+      "ID": "capt-yearly-archive-forever",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "capt.dev/yearly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }]
+    }
+  ]
+}
