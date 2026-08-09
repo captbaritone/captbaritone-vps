@@ -26,7 +26,9 @@ from datetime import date, timedelta
 
 BUCKET = "jordaneldredge-backup-bucket"
 
-# (source prefix, filename regex capturing YYYY-MM-DD)
+# (source prefix, filename regex capturing YYYY-MM-DD).
+# Multiple entries with the same prefix are OK -- each pattern is treated
+# as an independent stream with its own GFS survivors.
 PREFIXES = [
     ("skins_database/",
      re.compile(r"^skins_db_backup_archive_(\d{4}-\d{2}-\d{2})\.sqlite3(?:\.gz)?$")),
@@ -34,6 +36,13 @@ PREFIXES = [
      re.compile(r"^db_backup_archive_(\d{4}-\d{2}-\d{2})\.sqlite3(?:\.gz)?$")),
     ("capt.dev/",
      re.compile(r"^db_backup_archive_(\d{4}-\d{2}-\d{2})\.sqlite3(?:\.gz)?$")),
+    # nicolasaliaga.com -- orphaned prefix (systemd unit removed May 2026).
+    # Two filename patterns coexist here; handle each as its own stream so
+    # zips and DB dumps get independent yearly picks.
+    ("nicolasaliaga.com/",
+     re.compile(r"^(\d{4}-\d{2}-\d{2})\.zip$")),
+    ("nicolasaliaga.com/",
+     re.compile(r"^db_(\d{4}-\d{2}-\d{2})\.sql$")),
 ]
 
 TIERS = ["yearly", "monthly", "weekly", "daily"]
@@ -103,6 +112,14 @@ def compute_survivors(by_date, today):
         k = by_date.get(d)
         if k and k not in survivors:
             survivors[k] = "daily"
+
+    # Invariant: always keep the most recent snapshot, even if it falls outside
+    # every tier window (e.g. an orphaned prefix where writes stopped years
+    # ago). Bucketed as yearly since that never expires.
+    if by_date:
+        newest_key = by_date[max(by_date)]
+        if newest_key not in survivors:
+            survivors[newest_key] = "yearly"
 
     return survivors
 

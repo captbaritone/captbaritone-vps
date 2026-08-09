@@ -76,6 +76,32 @@
       "Status": "Enabled",
       "Filter": { "Prefix": "capt.dev/yearly/" },
       "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }]
+    },
+
+    {
+      "ID": "nicolasaliaga-daily-expire-7d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "nicolasaliaga.com/daily/" },
+      "Expiration": { "Days": 7 }
+    },
+    {
+      "ID": "nicolasaliaga-weekly-expire-30d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "nicolasaliaga.com/weekly/" },
+      "Expiration": { "Days": 30 }
+    },
+    {
+      "ID": "nicolasaliaga-monthly-archive-expire-366d",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "nicolasaliaga.com/monthly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }],
+      "Expiration": { "Days": 366 }
+    },
+    {
+      "ID": "nicolasaliaga-yearly-archive-forever",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "nicolasaliaga.com/yearly/" },
+      "Transitions": [{ "Days": 1, "StorageClass": "DEEP_ARCHIVE" }]
     }
   ]
 }
