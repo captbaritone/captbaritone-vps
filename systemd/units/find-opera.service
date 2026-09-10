@@ -1,0 +1,26 @@
+[Unit]
+Description=opera.capt.com: Next.js Site
+After=network.target
+
+[Service]
+Type=simple
+User=captbaritone
+Group=captbaritone
+WorkingDirectory=/home/captbaritone/projects/find-opera
+
+Environment=HOME=/home/captbaritone
+Environment=NODE_ENV=production
+Environment=PORT=4000
+Environment="PATH=/home/captbaritone/.nvm/versions/node/v24.12.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# You can keep using the absolute pnpm path if you like, but with PATH set you don't need to:
+ExecStart=/usr/bin/env bash -lc 'exec pnpm run start'
+
+Restart=on-failure
+RestartSec=2
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
