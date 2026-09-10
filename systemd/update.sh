@@ -3,8 +3,11 @@
 
 set -e
 
-# Refresh sudo session to avoid multiple password prompts
-sudo -v
+# Refresh the sudo timestamp when the box allows it. This host grants
+# passwordless sudo per command but not bare `sudo -v`, and every command
+# below is one of the permitted ones, so a failure here must not stop the
+# script -- otherwise it cannot be run over ssh without a terminal.
+sudo -v 2>/dev/null || true
 
 UNIT_DIR="$(dirname "$0")/units"
 TARGET_DIR="/etc/systemd/system/"
