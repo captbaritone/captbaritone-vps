@@ -18,5 +18,22 @@ done
 
 echo "All sites files copied."
 
+# Shared snippets (log formats and the like). Enabling is idempotent.
+CONF_DIR="$(dirname "$0")/conf-available"
+if [[ -d "$CONF_DIR" ]]; then
+    for conf_file in "$CONF_DIR"/*.conf; do
+        [[ -f "$conf_file" ]] || continue
+        echo "Copying $conf_file to /etc/apache2/conf-available/"
+        sudo cp "$conf_file" /etc/apache2/conf-available/
+        sudo a2enconf "$(basename "$conf_file" .conf)" > /dev/null
+    done
+    echo "All conf files copied and enabled."
+fi
+
+# Never reload a config that will not parse: this Apache fronts every site on
+# the box, so a bad file takes all of them down rather than one.
+echo "Checking configuration..."
+sudo apache2ctl configtest
+
 echo "Reloading Apache..."
 sudo systemctl reload apache2
