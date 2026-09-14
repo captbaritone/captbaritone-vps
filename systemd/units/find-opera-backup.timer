@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Backup of the FindOpera database to S3 every day
+
+[Timer]
+# 15:05, clear of the other three backups at 05:05, 10:05 and 20:05. They read
+# the same two cores and this one snapshots, verifies and compresses ~180MB.
+OnCalendar=*-*-* 15:05
+Persistent=true
+
+[Install]
+WantedBy=timers.target

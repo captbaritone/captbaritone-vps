@@ -1,0 +1,21 @@
+[Unit]
+Description=FindOpera: Backup Database to S3
+After=network.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+# Project directory
+WorkingDirectory=/home/captbaritone/
+
+ExecStart=/home/captbaritone/captbaritone-vps/backup/findopera_db_backup.sh
+
+# Environment
+Environment=HOME=/home/captbaritone
+
+StandardOutput=journal
+StandardError=journal
