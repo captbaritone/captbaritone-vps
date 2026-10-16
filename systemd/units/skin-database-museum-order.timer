@@ -1,0 +1,11 @@
+[Unit]
+Description=Recompute the Winamp Skin Museum's sort order every day at 3:00
+
+[Timer]
+# After the Internet Archive sync at 2:00 (which adds skins), and well before
+# the database backup at 10:05.
+OnCalendar=*-*-* 03:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

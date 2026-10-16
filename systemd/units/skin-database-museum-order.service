@@ -1,0 +1,26 @@
+[Unit]
+Description=Winamp Skin Museum: Recompute the museum's sort order
+After=network.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+# Project directory
+WorkingDirectory=/home/captbaritone/projects/webamp/packages/skin-database/
+
+# Environment
+Environment=NODE_ENV=production
+Environment=HOME=/home/captbaritone
+Environment="PATH=/home/captbaritone/.nvm/versions/node/v22.21.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Rebuilds museum_sort_order, which is both the museum's list and the pool
+# its random skins are drawn from. Skins added since it was last built are in
+# neither until it runs.
+ExecStart=/usr/bin/env bash -lc 'exec pnpm run cli dev --compute-museum-order'
+
+StandardOutput=journal
+StandardError=journal
