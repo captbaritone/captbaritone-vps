@@ -1,0 +1,10 @@
+[Unit]
+Description=Rebuild FindOpera's network table on the first of every month
+
+[Timer]
+# 04:20, clear of the museum order at 03:00 and the first backup at 05:05.
+OnCalendar=*-*-01 04:20
+Persistent=true
+
+[Install]
+WantedBy=timers.target

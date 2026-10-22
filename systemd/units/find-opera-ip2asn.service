@@ -1,0 +1,23 @@
+[Unit]
+Description=FindOpera: Rebuild the network table for analytics
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+WorkingDirectory=/home/captbaritone/
+
+ExecStart=/home/captbaritone/captbaritone-vps/jobs/findopera_ip2asn.sh
+
+# Environment. Node 24, the version find-opera.service runs the app on, since
+# the build is the app's own code.
+Environment=HOME=/home/captbaritone
+Environment="PATH=/home/captbaritone/.nvm/versions/node/v24.22.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+StandardOutput=journal
+StandardError=journal
