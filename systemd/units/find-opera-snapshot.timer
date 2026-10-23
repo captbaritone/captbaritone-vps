@@ -1,0 +1,10 @@
+[Unit]
+Description=Build FindOpera's catalog snapshot every Monday
+
+[Timer]
+# 04:40, clear of the museum order at 03:00 and the first backup at 05:05.
+OnCalendar=Mon *-*-* 04:40
+Persistent=true
+
+[Install]
+WantedBy=timers.target

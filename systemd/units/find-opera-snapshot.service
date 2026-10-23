@@ -1,0 +1,23 @@
+[Unit]
+Description=FindOpera: Build the weekly catalog snapshot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+WorkingDirectory=/home/captbaritone/
+
+ExecStart=/home/captbaritone/captbaritone-vps/jobs/findopera_snapshot.sh
+
+# Environment. Python and zip come from the system; the script needs nothing
+# else.
+Environment=HOME=/home/captbaritone
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+StandardOutput=journal
+StandardError=journal
