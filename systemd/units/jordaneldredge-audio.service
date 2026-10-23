@@ -1,0 +1,30 @@
+[Unit]
+Description=JordanEldredge.com: Record audio versions of new and changed posts
+After=network-online.target jordaneldredge.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+
+# Run as your user
+User=captbaritone
+Group=captbaritone
+
+# Project directory
+WorkingDirectory=/home/captbaritone/projects/jordaneldredge.com/
+
+# Environment. OpenAI and R2 credentials come from the project's .env.
+Environment=HOME=/home/captbaritone
+Environment="PATH=/home/captbaritone/.nvm/versions/node/v22.23.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Reindex first, through the running site, so a note published since the last
+# manual reindex gets its audio tonight rather than after the next one.
+ExecStartPre=/usr/bin/curl -fsSL --max-time 300 https://jordaneldredge.com/api/reindex/
+
+# Records only items whose spoken text has changed since their audio was made
+# (tracked by hash in the tts table), skips drafts, and records at most ten
+# per run so a bug cannot re-record the whole site in one night.
+ExecStart=/usr/bin/env bash -lc 'exec pnpm run audio'
+
+StandardOutput=journal
+StandardError=journal
