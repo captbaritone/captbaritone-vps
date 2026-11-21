@@ -5,16 +5,14 @@ Systemd units and other configuration files for setting up my VPS which hosts va
 
 ## Services
 
-To enable a service/start:
+`update.sh` copies every unit in `units/` to `/etc/systemd/system/` and enables
+each one with an `[Install]` section, so it comes back after a reboot. A unit
+that must stay off at boot goes in `KEEP_DISABLED` at the top of that loop,
+with the reason. The script does not start anything; after adding a new
+service or timer, start it:
 
 ```bash
-sudo systemctl enable --now <service-name>
-```
-
-To enable a timer/start:
-
-```bash
-sudo systemctl enable --now <timer-name>
+sudo systemctl start <service-or-timer-name>
 ```
 
 To view logs for a service:
