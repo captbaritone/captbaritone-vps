@@ -22,5 +22,16 @@ Environment="PATH=/home/captbaritone/.nvm/versions/node/v22.23.4/bin:/usr/local/
 # neither until it runs.
 ExecStart=/usr/bin/env bash -lc 'exec pnpm run cli dev --compute-museum-order'
 
+# Cap the job so it cannot take the web services down with it. On 2026-11-27
+# it grew past 650MB on top of three ~650MB next-servers, left the 4GB box
+# with 9MB free and swap full, and every site stalled until it was stopped;
+# the OOM kill of find-opera at ~03:15 on 2026-11-23 was the same job.
+# MemoryHigh throttles it, MemoryMax kills it, and MemorySwapMax=0 stops it
+# pushing pages into swap, which is what made the whole box thrash. If it is
+# killed it simply runs again the next night.
+MemoryHigh=700M
+MemoryMax=900M
+MemorySwapMax=0
+
 StandardOutput=journal
 StandardError=journal
